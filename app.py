@@ -4,7 +4,7 @@ from flask import render_template
 import json
 import requests
 import lxml.etree as etree
-
+from version import version 
 
 app = Flask(__name__)
 
@@ -17,11 +17,8 @@ def index():
     return json.dumps(output , indent=4, sort_keys=True)
 
 @app.route("/v2/version",methods=['GET'])
-def version():
-    msg = '{"api": "c0re_api", "author":"kearol", "website": "c0re.moe" ,"version" :"v0.1"}'
-    output = json.loads(msg)
-    return  json.dumps(output, indent=4, sort_keys=True)
-
+def api_version():
+    return version()
 
 if __name__ == "__main__":
     app.run( port=9205)
